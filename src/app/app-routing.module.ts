@@ -4,11 +4,12 @@ import { PersonasComponent } from './personas/personas.component';
 import { FormularioComponent } from './personas/formulario/formulario.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
+import { LoginGuardian } from './login/login-guardian.service';
 
 const routes: Routes = [
-  {path:'', component: PersonasComponent},
+  {path:'', component: PersonasComponent,canActivate:[LoginGuardian]},
   //manejo de rutas hijas
-  {path:'personas', component:PersonasComponent, children:[
+  {path:'personas', component:PersonasComponent,canActivate:[LoginGuardian], children:[
     {path:'agregar',component:FormularioComponent},
     {path:':id',component:FormularioComponent},
   ]},
